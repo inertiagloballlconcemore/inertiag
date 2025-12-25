@@ -1,1297 +1,502 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inertia Global LLC – Logistics Consulting & Operations</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Inertia Global LLC | Logistics Consulting & Operations – Illinois & Midwest</title>
   <meta
     name="description"
-    content="Inertia Global LLC – hands-on logistics consulting and operations support, helping shippers and businesses plan, coordinate, and actually run their logistics."
+    content="Inertia Global LLC provides hands-on logistics consulting and day-to-day operations support for shippers and businesses in Illinois and across the Midwest."
   />
+  <meta name="theme-color" content="#0b1220" />
+
+  <meta property="og:title" content="Inertia Global LLC | Logistics Consulting & Operations" />
+  <meta property="og:description" content="Hands-on logistics consulting and execution you can rely on." />
+  <meta property="og:type" content="website" />
+
   <style>
-    :root {
-      --bg: #050816;
-      --bg-alt: #0b1220;
-      --card: #0f172a;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #1f2933;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
-      --transition-fast: 0.18s ease-out;
-      --transition-med: 0.25s ease;
+    :root{
+      --bg:#0b1220;
+      --card:#101a2e;
+      --muted:#9fb0cf;
+      --text:#eef3ff;
+      --line:rgba(255,255,255,.10);
+      --accent:#7aa2ff;
+      --accent2:#6ee7b7;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(900px 500px at 20% -10%, rgba(122,162,255,.25), transparent 60%),
+                  radial-gradient(700px 500px at 80% 0%, rgba(110,231,183,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
     }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(120% 160% at 0% 0%, #1f2937 0, #020617 42%, #000 100%);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .skip{
+      position:absolute; left:-999px; top:auto;
+      width:1px; height:1px; overflow:hidden;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    .skip:focus{
+      left:18px; top:12px; width:auto; height:auto;
+      padding:10px 12px; background:#000; border:1px solid var(--line);
+      border-radius:10px; z-index:9999;
     }
-
-    img {
-      max-width: 100%;
-      display: block;
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.7);
+      border-bottom: 1px solid var(--line);
     }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
     }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.25rem 1.25rem 4rem;
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
     }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(
-        to bottom,
-        rgba(2, 6, 23, 0.94),
-        rgba(2, 6, 23, 0.75),
-        transparent
-      );
-      border-bottom: 1px solid rgba(15, 23, 42, 0.7);
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(110,231,183,.85));
+      color:#061022;
+      font-weight:800;
+      letter-spacing:.5px;
+      box-shadow: var(--shadow);
+      flex:0 0 auto;
     }
-
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
+    .brand strong{font-size:14px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
+    nav ul{
+      list-style:none; padding:0; margin:0;
+      display:flex; align-items:center; gap:14px;
+      flex-wrap:wrap;
     }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+    nav a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
     }
-
-    .logo-circle {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 20% 20%, #67e8f9 0, #22d3ee 25%, #0ea5e9 60%, #1d4ed8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 22px rgba(34, 211, 238, 0.45);
+    nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .cta{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(122,162,255,.35);
+      background: rgba(122,162,255,.12);
+      text-decoration:none;
+      font-weight:650;
+      font-size:13px;
+      white-space:nowrap;
     }
-
-    .logo-circle span {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #020617;
+    .cta:hover{background: rgba(122,162,255,.18)}
+    main{padding:34px 0 54px}
+    .hero{
+      padding:26px 0 10px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:start;
     }
-
-    .nav-title {
-      display: flex;
-      flex-direction: column;
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; gap:14px}
     }
-
-    .nav-title strong {
-      font-size: 1.15rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:8px 10px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:12px;
+      width: fit-content;
     }
-
-    .nav-title span {
-      font-size: 0.78rem;
-      color: var(--muted);
+    .dot{width:8px; height:8px; border-radius:50%; background: var(--accent2); box-shadow: 0 0 0 4px rgba(110,231,183,.12);}
+    h1{
+      font-size: clamp(30px, 4vw, 44px);
+      margin:12px 0 10px;
+      line-height:1.1;
+      letter-spacing:-.5px;
     }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.85rem;
+    .lead{
+      color:var(--muted);
+      font-size: 15px;
+      margin:0 0 18px;
+      max-width: 62ch;
     }
-
-    .nav-links a {
-      padding: 0.3rem 0.6rem;
-      border-radius: 999px;
-      color: var(--muted);
-      transition: color var(--transition-fast), background var(--transition-fast),
-        transform var(--transition-fast);
+    .actions{display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 8px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      text-decoration:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-weight:700;
     }
-
-    .nav-links a:hover {
-      color: var(--text);
-      background: rgba(15, 23, 42, 0.9);
-      transform: translateY(-1px);
+    .btn:hover{background: rgba(255,255,255,.07)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(110,231,183,.65));
+      border: 1px solid rgba(255,255,255,.16);
+      color:#061022;
     }
-
-    .nav-cta {
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      background: linear-gradient(to right, #38bdf8, #22d3ee);
-      color: #020617;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.45);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        filter var(--transition-fast);
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.55);
-    }
-
-    .nav-cta span.arrow {
-      font-size: 1rem;
-      margin-top: 1px;
-    }
-
-    /* Hamburger + mobile menu */
-
-    .hamburger {
-      display: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.95);
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-      transition: background var(--transition-fast), border-color var(--transition-fast),
-        transform var(--transition-fast);
-    }
-
-    .hamburger span {
-      width: 16px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--text);
-      display: block;
-    }
-
-    .hamburger:hover {
-      background: rgba(15, 23, 42, 1);
-      border-color: rgba(148, 163, 184, 0.8);
-      transform: translateY(-1px);
-    }
-
-    .mobile-menu-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.86);
-      display: none;
-      align-items: flex-start;
-      justify-content: flex-end;
-      z-index: 40;
-    }
-
-    .mobile-menu-backdrop.open {
-      display: flex;
-    }
-
-    .mobile-menu {
-      width: 72%;
-      max-width: 280px;
-      background: #020617;
-      border-left: 1px solid rgba(15, 23, 42, 0.95);
-      padding: 1rem 1.25rem 1.5rem;
-      box-shadow: -20px 0 40px rgba(15, 23, 42, 0.95);
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .mobile-menu-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-
-    .mobile-menu-title {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .mobile-close {
-      border: none;
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--muted);
-      border-radius: 999px;
-      width: 28px;
-      height: 28px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .mobile-close:hover {
-      color: var(--text);
-    }
-
-    .mobile-menu a,
-    .mobile-menu button.mobile-cta {
-      text-align: left;
-      font-size: 0.9rem;
-      padding: 0.6rem 0.4rem;
-      border-radius: 0.75rem;
-      border: none;
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-    }
-
-    .mobile-menu a:hover {
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .mobile-cta {
-      margin-top: 0.5rem;
-      background: linear-gradient(to right, #38bdf8, #22d3ee);
-      color: #020617;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.45);
-    }
-
-    main {
-      position: relative;
-      z-index: 10;
-    }
-
-    .hero {
-      padding-top: 2.5rem;
-      padding-bottom: 2.5rem;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 2.25rem;
-      align-items: center;
-    }
-
-    .hero-left-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      padding: 0.22rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .hero-pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
-    }
-
-    .hero-heading {
-      font-size: clamp(2.3rem, 4vw, 2.9rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
-    }
-
-    .hero-heading span.highlight {
-      background: linear-gradient(to right, #38bdf8, #a855f7);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 0.98rem;
-      color: var(--muted);
-      max-width: 34rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-subtitle strong {
-      color: #e5e7eb;
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .btn-primary {
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      background: linear-gradient(to right, #38bdf8, #22d3ee);
-      border: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #020617;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.5);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        filter var(--transition-fast);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px) translateX(0.5px);
-      filter: brightness(1.04);
-      box-shadow: 0 22px 60px rgba(56, 189, 248, 0.6);
-    }
-
-    .btn-ghost {
-      padding: 0.7rem 1.25rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      cursor: pointer;
-      transition: background var(--transition-fast), color var(--transition-fast),
-        border-color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text);
-      border-color: rgba(148, 163, 184, 0.8);
-      transform: translateY(-1px);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .hero-meta-block strong {
-      font-size: 0.9rem;
-      display: block;
-      color: #e5e7eb;
-    }
-
-    .hero-meta-block span.badge {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 0.2rem 0.55rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      margin-top: 0.3rem;
-      font-size: 0.75rem;
-    }
-
-    .hero-right {
-      position: relative;
-    }
-
-    .hero-card {
-      position: relative;
-      border-radius: var(--radius-xl);
-      background: radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.16) 0, #020617 55%);
-      border: 1px solid rgba(15, 23, 42, 0.9);
-      padding: 1.25rem 1.2rem 1.35rem;
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
-
-    .hero-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .hero-card-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .hero-card-chip {
-      font-size: 0.7rem;
-      padding: 0.22rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      color: var(--muted);
-    }
-
-    .hero-card-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 1.1rem;
-      align-items: flex-start;
-    }
-
-    .hero-stats-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      font-size: 0.8rem;
-    }
-
-    .mini-card {
+    .btn.primary:hover{filter:brightness(1.03)}
+    .note{color:var(--muted); font-size:12px; margin-top:8px}
+    .card{
+      background: rgba(16,26,46,.72);
+      border:1px solid var(--line);
       border-radius: 18px;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      padding: 0.65rem 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-
-    .mini-card h4 {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
+    .card.pad{padding:18px}
+    .statgrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
     }
-
-    .mini-card strong {
-      font-size: 0.9rem;
+    @media (max-width: 520px){
+      .statgrid{grid-template-columns: 1fr}
     }
-
-    .mini-card span.pill {
-      padding: 0.08rem 0.5rem;
-      border-radius: 999px;
-      font-size: 0.68rem;
-      border: 1px solid rgba(45, 212, 191, 0.7);
-      color: #a5f3fc;
+    .stat{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
     }
-
-    .mini-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .stat b{display:block; font-size:14px}
+    .stat span{display:block; color:var(--muted); font-size:12px; margin-top:4px}
+    section{margin-top:24px}
+    section h2{
+      margin:0 0 10px;
+      font-size: 22px;
+      letter-spacing:-.2px;
     }
-
-    .mini-row span.label {
-      font-size: 0.75rem;
-      color: var(--muted);
+    .muted{color:var(--muted)}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
     }
-
-    .mini-row span.value {
-      font-size: 0.86rem;
+    @media (max-width: 900px){
+      .grid3{grid-template-columns:1fr}
     }
-
-    .hero-graph {
-      border-radius: 18px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      padding: 0.7rem 0.75rem 0.8rem;
-      font-size: 0.72rem;
+    .item{
+      padding:16px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
     }
-
-    .hero-graph-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.35rem;
-      color: var(--muted);
+    .item h3{margin:0 0 6px; font-size:15px}
+    .item ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .item li{margin:6px 0}
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
     }
-
-    .graph-bars {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0.25rem;
-      align-items: flex-end;
-      height: 80px;
-      margin-top: 0.25rem;
-      margin-bottom: 0.35rem;
+    @media (max-width: 900px){
+      .two{grid-template-columns:1fr}
     }
-
-    .graph-bar {
-      border-radius: 999px;
-      background: linear-gradient(to top, #0ea5e9, #22c55e);
-      opacity: 0.8;
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:8px;
     }
-
-    .graph-bar:nth-child(1) { height: 45%; }
-    .graph-bar:nth-child(2) { height: 70%; }
-    .graph-bar:nth-child(3) { height: 60%; }
-    .graph-bar:nth-child(4) { height: 90%; }
-    .graph-bar:nth-child(5) { height: 75%; }
-
-    .hero-graph-footer {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
+    @media (max-width: 520px){
+      .kv{grid-template-columns:1fr}
     }
-
-    .hero-orbit {
-      position: absolute;
-      inset: -40%;
-      border-radius: 999px;
-      border: 1px dashed rgba(56, 189, 248, 0.15);
-      pointer-events: none;
+    .kv .k{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
     }
-
-    .hero-orbit-dot {
-      position: absolute;
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: #f59e0b;
-      top: 8%;
-      right: 14%;
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.9);
+    .kv .k b{color:var(--text); display:block; margin-bottom:4px}
+    form{
+      margin-top:14px;
+      display:grid;
+      gap:10px;
     }
-
-    section {
-      margin-top: 2.75rem;
+    label{font-size:13px; color:var(--muted)}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
     }
-
-    .section-header {
-      margin-bottom: 1.5rem;
+    input:focus, textarea:focus{
+      border-color: rgba(122,162,255,.55);
+      box-shadow: 0 0 0 4px rgba(122,162,255,.12);
     }
-
-    .section-eyebrow {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
     }
-
-    .section-title {
-      font-size: 1.4rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.3rem;
+    @media (max-width: 650px){
+      .row2{grid-template-columns:1fr}
     }
-
-    .section-description {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 32rem;
+    .submit{
+      justify-self:start;
+      border:none;
+      cursor:pointer;
     }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
+    footer{
+      border-top:1px solid var(--line);
+      padding:18px 0 28px;
+      color:var(--muted);
+      font-size:12px;
     }
-
-    .card {
-      border-radius: var(--radius-lg);
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.14) 0, #020617 60%);
-      border: 1px solid rgba(15, 23, 42, 0.95);
-      padding: 1rem;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.85);
-      transition: transform var(--transition-med), box-shadow var(--transition-med),
-        border-color var(--transition-med), background var(--transition-med);
+    .foot{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      flex-wrap:wrap;
     }
-
-    .card:hover {
-      transform: translateY(-4px) translateX(1px);
-      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.95);
-      border-color: rgba(56, 189, 248, 0.4);
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18) 0, #020617 65%);
-    }
-
-    .card-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(56, 189, 248, 0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card h3 {
-      font-size: 0.98rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .card ul {
-      list-style: none;
-      font-size: 0.8rem;
-      color: var(--muted);
-      padding-left: 0;
-    }
-
-    .card ul li {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .card ul li::before {
-      content: "•";
-      color: #38bdf8;
-      font-size: 1rem;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.3fr);
-      gap: 1.1rem;
-    }
-
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .pill {
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .metric-card {
-      border-radius: 18px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(30, 64, 175, 0.85);
-      padding: 0.85rem 0.9rem;
-      font-size: 0.78rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    .metric-card strong {
-      font-size: 1.3rem;
-    }
-
-    .metric-row {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 0.35rem;
-      font-size: 0.74rem;
-      color: var(--muted);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.2fr);
-      gap: 1.1rem;
-    }
-
-    .contact-details {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .contact-details p {
-      margin-bottom: 0.7rem;
-    }
-
-    .contact-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      margin-bottom: 0.6rem;
-      font-size: 0.85rem;
-    }
-
-    .contact-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
-
-    .contact-value {
-      color: #e5e7eb;
-    }
-
-    .contact-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
-
-    form {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.94);
-      border: 1px solid rgba(15, 23, 42, 0.9);
-      padding: 1rem;
-      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.9);
-      font-size: 0.85rem;
-    }
-
-    .form-row {
-      margin-bottom: 0.75rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.25rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.55rem 0.6rem;
-      border-radius: 10px;
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      background: #020617;
-      color: var(--text);
-      font: inherit;
-      outline: none;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
-        background var(--transition-fast);
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: #4b5563;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
-      background: #020617;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .form-footnote {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-top: 0.35rem;
-    }
-
-    .form-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .form-status {
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    footer {
-      border-top: 1px solid rgba(15, 23, 42, 0.95);
-      padding: 1rem 1.25rem 1.4rem;
-      font-size: 0.78rem;
-      color: var(--muted);
-      background: #020617;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 0.55rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      padding: 0.15rem 0.45rem;
-      border-radius: 999px;
-      border: 1px solid rgba(30, 64, 175, 0.8);
-      background: rgba(15, 23, 42, 0.9);
-      transition: background var(--transition-fast), border-color var(--transition-fast),
-        color var(--transition-fast);
-    }
-
-    .footer-links a:hover {
-      background: rgba(15, 23, 42, 1);
-      border-color: rgba(56, 189, 248, 0.6);
-      color: #e5e7eb;
-    }
-
-    @media (max-width: 900px) {
-      .hero,
-      .why-grid,
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero {
-        padding-top: 2rem;
-      }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hamburger {
-        display: inline-flex;
-      }
-
-      .container {
-        padding-inline: 1rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card-body {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-meta {
-        gap: 1rem;
-      }
-    }
+    .foot a{color:var(--muted); text-decoration:none; padding:6px 8px; border-radius:10px}
+    .foot a:hover{background:rgba(255,255,255,.06); color:var(--text)}
   </style>
 </head>
+
 <body>
-  <!-- Mobile slide-out menu -->
-  <div
-    class="mobile-menu-backdrop"
-    id="mobileMenuBackdrop"
-    onclick="toggleMobileMenu(false)"
-  >
-    <div class="mobile-menu" onclick="event.stopPropagation()">
-      <div class="mobile-menu-header">
-        <div class="mobile-menu-title">Inertia Global LLC</div>
-        <button class="mobile-close" type="button" onclick="toggleMobileMenu(false)">✕</button>
-      </div>
-      <a href="#services" onclick="toggleMobileMenu(false)">Services</a>
-      <a href="#why-us" onclick="toggleMobileMenu(false)">Why us</a>
-      <a href="#contact" onclick="toggleMobileMenu(false)">Contact</a>
-      <button
-        type="button"
-        class="mobile-cta"
-        onclick="toggleMobileMenu(false); document.getElementById('contact').scrollIntoView({behavior:'smooth'});"
-      >
-        Let’s talk
-        <span>↗</span>
-      </button>
-    </div>
-  </div>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <div class="page" id="top">
-    <header>
-      <nav class="nav">
-        <div class="nav-left">
-          <div class="logo-circle">
-            <span>IG</span>
-          </div>
-          <div class="nav-title">
-            <strong>Inertia Global LLC</strong>
-            <span>Logistics consulting &amp; operations</span>
-          </div>
-        </div>
-        <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#why-us">Why us</a>
-          <a href="#contact">Contact</a>
-          <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Let’s talk
-            <span class="arrow">↗</span>
-          </button>
-        </div>
-        <button
-          class="hamburger"
-          type="button"
-          aria-label="Open menu"
-          onclick="toggleMobileMenu(true)"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
-    </header>
-
-    <main class="container">
-      <section class="hero" aria-labelledby="hero-title">
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Inertia Global LLC home">
+        <div class="logo" aria-hidden="true">IG</div>
         <div>
-          <div class="hero-left-label">
-            <span class="hero-pill-dot"></span>
-            <span>Now accepting new logistics clients</span>
-          </div>
-          <h1 id="hero-title" class="hero-heading">
-            Hands-on <span class="highlight">logistics consulting</span> and execution you can rely on.
-          </h1>
-          <p class="hero-subtitle">
-            Inertia Global LLC helps shippers and businesses plan, coordinate, and
-            actually run their logistics. From routing and scheduling to on-the-ground
-            support, <strong>we focus on freight moving on time and in the right place.</strong>
-          </p>
+          <strong>Inertia Global LLC</strong>
+          <span>Logistics consulting &amp; operations</span>
+        </div>
+      </a>
 
-          <div class="hero-actions">
-            <button
-              class="btn-primary"
-              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
-            >
-              Book a logistics consult
-              <span>→</span>
-            </button>
-            <button
-              class="btn-ghost"
-              onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"
-            >
-              View services
-            </button>
-          </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-          <div class="hero-meta">
-            <div class="hero-meta-block">
-              <strong>15–30 minute intro call</strong>
-              <span>Clarify freight, lanes, and needs.</span>
-            </div>
-            <div class="hero-meta-block">
-              <strong>Flexible engagement</strong>
-              <span class="badge">Project • Ongoing support • Advisory</span>
-            </div>
-          </div>
+      <a class="cta" href="#contact" aria-label="Jump to contact section">
+        Let’s talk ↗
+      </a>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div id="top" class="hero">
+      <div>
+        <div class="badge"><span class="dot" aria-hidden="true"></span> Now accepting new logistics clients</div>
+
+        <h1>Hands-on logistics consulting and execution you can rely on.</h1>
+
+        <p class="lead">
+          Inertia Global LLC helps shippers and businesses plan, coordinate, and actually run their logistics.
+          From routing and scheduling to on-the-ground support, we focus on freight moving on time and in the right place.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary"
+             href="mailto:info@inertiaglobal.net?subject=Intro%20Call%20%E2%80%93%20Inertia%20Global%20Logistics&body=Hi%20Inertia%20Global%2C%0D%0A%0D%0AI%E2%80%99m%20reaching%20out%20about%20logistics%20support.%20Here%E2%80%99s%20a%20quick%20summary%3A%0D%0A%0D%0A%E2%80%A2%20Freight%2Fproducts%3A%20%0D%0A%E2%80%A2%20Lanes%2Fregions%3A%20%0D%0A%E2%80%A2%20Current%20challenge%3A%20%0D%0A%E2%80%A2%20Timeline%3A%20%0D%0A%0D%0AThanks!"
+          >
+            Book a logistics consult →
+          </a>
+
+          <a class="btn" href="#services">View services</a>
         </div>
 
-        <div class="hero-right" aria-hidden="true">
-          <div class="hero-card">
-            <div class="hero-card-header">
-              <div class="hero-card-title">Logistics Snapshot</div>
-              <div class="hero-card-chip">Sample view</div>
-            </div>
-            <div class="hero-card-body">
-              <div class="hero-stats-group">
-                <div class="mini-card">
-                  <div>
-                    <h4>On-time delivery rate</h4>
-                    <strong>96%</strong>
-                  </div>
-                  <span class="pill">↑ Improved coordination</span>
-                </div>
-                <div class="mini-row">
-                  <span class="label">Active lanes</span>
-                  <span class="value">8 key routes</span>
-                </div>
-                <div class="mini-row">
-                  <span class="label">Exceptions resolved</span>
-                  <span class="value">Same-business-day</span>
-                </div>
-              </div>
-              <div class="hero-graph">
-                <div class="hero-graph-header">
-                  <span>Operational efficiency</span>
-                  <span>Last 6 months</span>
-                </div>
-                <div class="graph-bars">
-                  <div class="graph-bar"></div>
-                  <div class="graph-bar"></div>
-                  <div class="graph-bar"></div>
-                  <div class="graph-bar"></div>
-                  <div class="graph-bar"></div>
-                </div>
-                <div class="hero-graph-footer">
-                  <span>Baseline</span>
-                  <span>+28% improvement</span>
-                </div>
-              </div>
-            </div>
-            <div class="hero-orbit"></div>
-            <div class="hero-orbit-dot"></div>
+        <div class="note">15–30 minute intro call • Clarify freight, lanes, and needs • Flexible engagement</div>
+      </div>
+
+      <aside class="card pad" aria-label="Logistics Snapshot">
+        <h2 style="margin-top:0">Logistics Snapshot</h2>
+        <p class="muted" style="margin:6px 0 12px">Sample view</p>
+
+        <div class="statgrid">
+          <div class="stat">
+            <b>On-time delivery rate</b>
+            <span>96% ↑ Improved coordination</span>
+          </div>
+          <div class="stat">
+            <b>Active lanes</b>
+            <span>8 key routes</span>
+          </div>
+          <div class="stat">
+            <b>Exceptions resolved</b>
+            <span>Same-business-day</span>
+          </div>
+          <div class="stat">
+            <b>Operational efficiency</b>
+            <span>Last 6 months • Baseline +28% improvement</span>
           </div>
         </div>
-      </section>
+      </aside>
+    </div>
 
-      <section id="services" aria-labelledby="services-title">
-        <div class="section-header">
-          <div class="section-eyebrow">Services</div>
-          <h2 class="section-title" id="services-title">Logistics support you can actually use</h2>
-          <p class="section-description">
-            Inertia Global LLC supports both planning and the day-to-day work of moving
-            freight. We focus on clear communication, realistic plans, and practical help.
-          </p>
+    <section id="services" class="card pad" aria-label="Services">
+      <h2>Services</h2>
+      <p class="muted" style="margin-top:0">
+        Logistics support you can actually use. Inertia Global LLC supports both planning and the day-to-day work of moving freight.
+      </p>
+
+      <div class="grid3" role="list">
+        <div class="item" role="listitem">
+          <h3>Carrier coordination &amp; scheduling</h3>
+          <div class="muted">Support that keeps freight moving.</div>
+          <ul>
+            <li>Carrier coordination and scheduling support</li>
+            <li>Pickup, delivery, and appointment tracking</li>
+            <li>Exception handling and issue follow-up</li>
+          </ul>
         </div>
 
-        <div class="grid-3">
-          <article class="card">
-            <div class="card-icon">🚛</div>
-            <h3>Logistics Planning &amp; Strategy</h3>
-            <p>
-              Turn your shipping and distribution into a clear, repeatable plan that
-              fits your real-world constraints and budget.
-            </p>
-            <ul>
-              <li>Route and lane planning</li>
-              <li>Mode selection and basic cost review</li>
-              <li>Simple, owner-friendly logistics playbooks</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <div class="card-icon">📦</div>
-            <h3>Execution &amp; Coordination</h3>
-            <p>
-              Support not just on paper, but in the field—helping you actually move
-              freight and keep things on schedule.
-            </p>
-            <ul>
-              <li>Carrier coordination and scheduling support</li>
-              <li>Pickup, delivery, and appointment tracking</li>
-              <li>Exception handling and issue follow-up</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <div class="card-icon">📊</div>
-            <h3>Process Improvement</h3>
-            <p>
-              Clean up the day-to-day logistics work so you spend less time chasing
-              updates and correcting mistakes.
-            </p>
-            <ul>
-              <li>Standard operating procedures for logistics</li>
-              <li>Simple tracking and reporting templates</li>
-              <li>Training and handoff support for your team</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="why-us" aria-labelledby="why-title">
-        <div class="section-header">
-          <div class="section-eyebrow">Why Inertia Global LLC</div>
-          <h2 class="section-title" id="why-title">Built for busy shippers and owners</h2>
-          <p class="section-description">
-            You don’t need another thick report. You need someone who understands real-world
-            logistics and helps you keep freight moving without adding more confusion.
-          </p>
+        <div class="item" role="listitem">
+          <h3>Process improvement</h3>
+          <div class="muted">Spend less time chasing updates and correcting mistakes.</div>
+          <ul>
+            <li>Standard operating procedures for logistics</li>
+            <li>Simple tracking and reporting templates</li>
+            <li>Training and handoff support for your team</li>
+          </ul>
         </div>
 
-        <div class="why-grid">
-          <div>
-            <p style="font-size: 0.9rem; color: var(--muted);">
-              We focus on <strong>clear communication, reliable execution, and realistic planning</strong>.
-              Every lane, route, and shipment lives in the real world, so we design logistics
-              support that matches your volume, staff, and constraints.
-            </p>
-            <div class="pill-list">
-              <span class="pill">Plain-language logistics plans</span>
-              <span class="pill">Flexible support: remote or on-site</span>
-              <span class="pill">Simple tracking and status updates</span>
-              <span class="pill">Support for shippers and small fleets</span>
-            </div>
-            <p style="font-size: 0.86rem; color: var(--muted);">
-              You’ll always know what we’re working on, what’s next, and what we need from you.
-              No guessing, no “black-box” consulting—just straightforward logistics help.
-            </p>
-          </div>
+        <div class="item" role="listitem">
+          <h3>Flexible engagement</h3>
+          <div class="muted">Project, ongoing support, or advisory.</div>
+          <ul>
+            <li>Remote or on-site support</li>
+            <li>Clear status updates and next steps</li>
+            <li>You stay in control; we support</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-          <div style="display: flex; flex-direction: column; gap: 0.7rem;">
-            <div class="metric-card">
-              <span>Typical client outcome</span>
-              <strong>10–30 hrs / month</strong>
-              <span>time saved on coordination &amp; rework</span>
-              <div class="metric-row">
-                <span>Within 60–90 days of engagement</span>
-                <span>Varies by operation</span>
-              </div>
-            </div>
-            <div class="metric-card">
-              <span>Working style</span>
-              <div class="metric-row">
-                <span>Check-ins</span>
-                <span>Bi-weekly or monthly</span>
-              </div>
-              <div class="metric-row">
-                <span>Updates</span>
-                <span>Clear, concise summaries</span>
-              </div>
-              <div class="metric-row">
-                <span>Ownership</span>
-                <span>You stay in control; we support</span>
-              </div>
-            </div>
+    <section id="why" class="card pad" aria-label="Why Inertia Global LLC">
+      <h2>Why Inertia Global LLC</h2>
+      <p class="muted" style="margin-top:0">
+        Built for busy shippers and owners. You don’t need another thick report.
+      </p>
+
+      <div class="two">
+        <div class="item">
+          <h3>What to expect</h3>
+          <ul>
+            <li>Plain-language logistics plans</li>
+            <li>Simple tracking and status updates</li>
+            <li>Support for shippers and small fleets</li>
+            <li>No guessing, no “black-box” consulting—just straightforward logistics help</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>Typical client outcome</h3>
+          <div class="kv">
+            <div class="k"><b>10–30 hrs / month</b> time saved on coordination &amp; rework</div>
+            <div class="k"><b>Within 60–90 days</b> of engagement (varies by operation)</div>
+            <div class="k"><b>Check-ins</b> bi-weekly or monthly</div>
+            <div class="k"><b>Updates</b> clear, concise summaries</div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="contact" aria-labelledby="contact-title">
-        <div class="section-header">
-          <div class="section-eyebrow">Contact</div>
-          <h2 class="section-title" id="contact-title">Start the logistics conversation</h2>
-          <p class="section-description">
-            Share a bit about your freight, lanes, and current setup. We’ll follow up with
-            a short intro call option and next steps.
+    <section id="contact" class="card pad" aria-label="Contact">
+      <h2>Start the logistics conversation</h2>
+      <p class="muted" style="margin-top:0">
+        Share a bit about your freight, lanes, and current setup. We’ll follow up with a short intro call option and next steps.
+      </p>
+      <p class="muted">
+        There’s no pressure to commit—this is simply a chance to see if Inertia Global LLC is a good fit for your logistics needs.
+      </p>
+
+      <div class="two" style="margin-top:12px">
+        <div class="item" aria-label="Contact details">
+          <p style="margin:0 0 8px"><b>Email</b><br><a href="mailto:info@inertiaglobal.net">info@inertiaglobal.net</a></p>
+          <p style="margin:0 0 8px"><b>Phone</b><br><a href="tel:+18152398898">(815) 239-8898</a></p>
+          <p style="margin:0 0 8px"><b>Location</b><br>Illinois • Serving clients in the Midwest</p>
+          <p style="margin:0"><b>Typical response</b><br>Within 1–2 business days</p>
+
+          <p class="muted" style="margin-top:12px">
+            Prefer a quick note instead of a form? Email us with
+            <b>“Intro – Inertia Global Logistics”</b> in the subject line and a few lines about what you’re working on.
           </p>
         </div>
 
-        <div class="contact-grid">
-          <div class="contact-details">
-            <p>
-              There’s no pressure to commit—this is simply a chance to see if
-              Inertia Global LLC is a good fit for your logistics needs.
-            </p>
+        <div class="item" aria-label="Contact form">
+          <h3 style="margin-top:0">Send a message</h3>
+          <p class="muted" style="margin-top:0">
+            This form sends directly to your email via Formspree.
+          </p>
 
-            <div class="contact-row">
-              <span class="contact-label">Email</span>
-              <span class="contact-value">info@inertiaglobal.net</span>
+          <form action="https://formspree.io/f/xbdjryaz" method="POST">
+            <div class="row2">
+              <div>
+                <label for="name">Name*</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="organization">Organization</label>
+                <input id="organization" name="organization" type="text" autocomplete="organization" />
+              </div>
             </div>
 
-            <div class="contact-row">
-              <span class="contact-label">Phone</span>
-              <span class="contact-value">(815) 239-8898</span>
+            <div>
+              <label for="email">Email*</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
             </div>
 
-            <div class="contact-row">
-              <span class="contact-label">Location</span>
-              <span class="contact-value">Illinois • Serving clients in the Midwest</span>
+            <div>
+              <label for="message">How can we help?*</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
             </div>
 
-            <div class="contact-row">
-              <span class="contact-label">Typical response</span>
-              <span class="contact-value">Within 1–2 business days</span>
-            </div>
-
-            <p class="contact-note">
-              Prefer a quick note instead of a form? Email us with
-              <em>“Intro – Inertia Global Logistics”</em> in the subject line and a
-              few lines about what you’re working on.
-            </p>
-          </div>
-
-          <form>
-            <div class="form-row">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your full name" />
-            </div>
-
-            <div class="form-row">
-              <label for="company">Organization</label>
-              <input id="company" name="company" type="text" placeholder="Company / team name" />
-            </div>
-
-            <div class="form-row">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" />
-            </div>
-
-            <div class="form-row">
-              <label for="help">How can we help?</label>
-              <textarea id="help" name="help" placeholder="Share a brief overview of your lanes, volumes, and current challenges."></textarea>
-            </div>
-
-            <div class="form-row">
+            <div>
               <label for="timeline">Timeline (optional)</label>
-              <input id="timeline" name="timeline" type="text" placeholder="e.g., “Next 30–60 days”" />
+              <input id="timeline" name="timeline" type="text" placeholder="For example: Next 30–60 days" />
             </div>
 
-            <div class="form-footnote">
-              This form is a visual placeholder. Connect it to your preferred
-              email or CRM tool through your website platform.
-            </div>
+            <input type="hidden" name="_subject" value="New logistics inquiry – Inertia Global LLC" />
 
-            <div class="form-footer">
-              <button type="button" class="btn-primary">Send message</button>
-              <div class="form-status">We’ll reply with a short list of next-step options.</div>
-            </div>
+            <button class="btn primary submit" type="submit">Send message</button>
+
+            <p class="muted" style="margin:6px 0 0; font-size:12px">
+              We’ll reply with a short list of next-step options.
+            </p>
           </form>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <footer>
-      <div class="footer-inner">
-        <span>© <span id="year"></span> Inertia Global LLC. All rights reserved.</span>
-        <div class="footer-links">
+      <div class="wrap foot">
+        <div>© 2025 Inertia Global LLC. All rights reserved.</div>
+        <div>
           <a href="#top">Back to top</a>
           <a href="#services">Services</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
     </footer>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    function toggleMobileMenu(force) {
-      const backdrop = document.getElementById("mobileMenuBackdrop");
-      if (!backdrop) return;
-      const isOpen = backdrop.classList.contains("open");
-      const shouldOpen = force === true || (!isOpen && force !== false);
-      if (shouldOpen) {
-        backdrop.classList.add("open");
-      } else {
-        backdrop.classList.remove("open");
-      }
-    }
-  </script>
+  </main>
 </body>
 </html>
